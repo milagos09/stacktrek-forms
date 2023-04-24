@@ -104,9 +104,26 @@
             </div>
 
             <form class="input-container">
-                <textarea placeholder="type your message..." name="message"></textarea>
+                <textarea placeholder="type your message..." name="message" id="message"></textarea>
                 <input type="submit" value="Send" />
             </form>
         </div>
+        <script>
+            const messageContainer = document.querySelector(".message-container");
+            const form = document.querySelector("form");
+            const message = document.querySelector("#message");
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const newMessage = document.createElement("div");
+                const clear = document.createElement("div");
+                newMessage.className = "message-card user-message";
+                newMessage.innerText = message.value;
+                clear.className = "clear";
+                messageContainer.appendChild(newMessage);
+                messageContainer.appendChild(clear);
+                message.value = "";
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+            });
+        </script>
     </body>
 </html>
